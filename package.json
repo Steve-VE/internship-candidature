@@ -1,0 +1,25 @@
+{
+  "name": "halo-ligths",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Steve-VE/halo-ligths.git"
+  },
+  "author": "Steve Van Essche",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Steve-VE/halo-ligths/issues"
+  },
+  "homepage": "https://github.com/Steve-VE/halo-ligths#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "nodemailer": "^4.6.5",
+    "nodemon": "^1.17.4"
+  }
+}

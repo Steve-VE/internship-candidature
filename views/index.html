@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ma candidature :)</title>
+
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="/assets/js/class/HaloContainer.js"></script>
+    <script src="/assets/js/class/Paragraph.js"></script>
+    <script src="/assets/js/functions.js"></script>
+    <script src="/assets/js/main.js"></script>
+</head>
+<body>
+    <main class="halo-container">
+        <div id="start" onclick="showMustGoOn()">
+            <div class="tip">Hey ! Cliquez-moi !!!</div>
+        </div>
+        <section class="text-container">
+        </section>
+
+        <section class="container filled orange">
+            <div><p>
+                Je vous contacte car je suis à la recherche d'un stage, et j'aimerai énormément réaliser mon stage chez vous, et ce pour les raisons suivantes...
+            </p></div>
+            <div>
+                <ol id="why-you">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="container empty blue">
+            <div><p>
+                En tant que stagiaire, quelles sont mes qualités ?
+            </p></div>
+            <div>
+                <ol id="why-me">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="form">
+            <form>
+                <p>
+                    Pour plus de simplicité, vous pouvez répondre à ma candidature directement via ce formulaire.
+                </p>
+                <p>
+                    Votre réponse à ma candidature est ?
+                </p>
+                <p>
+                    <label>
+                        <input type="radio" value="positive" name="email_agrement" checked>
+                        <span>Positive, bienvenue mousaillon !</span>
+                    </label>
+                    <label>
+                        <input type="radio" value="negative" name="email_agrement">
+                        <span>Négative, une autre fois peut être.</span> 
+                    </label>
+                </p>
+                <label>Votre nom
+                    <input type="text" name="email_name">
+                </label>
+                <label>Votre adresse email
+                    <input type="email" name="email_adress">
+                </label>
+                <label>
+                    Un message particulier à me transmettre ?
+                    <textarea name="email_message"></textarea>
+                </label>
+                <input id="submitEmail" type="button" value="Envoyer">
+            </form>
+        </section>
+    </main>
+</body>
+</html>

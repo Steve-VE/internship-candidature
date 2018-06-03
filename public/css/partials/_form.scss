@@ -1,0 +1,166 @@
+.form{
+    @extend .container;
+
+    top: 400vh;
+    // top: 0;
+    font-size: 0.6em;
+
+    background-color: $light-blue;
+    background-image: url("../img/paper_texture.png");
+
+    border: 2vh solid darken($dark-blue, 10%);
+    border-left: none;
+    border-right: none;
+    box-shadow: 1vh 2vh 1vh $color-shadow;
+
+    transform: skewY(4deg);
+    
+    &>*{
+        transform: skewY(-4deg);
+    }
+
+    form{
+        textarea{
+            display: block;
+            width: 100%;
+            height: 200px;
+            min-height: 10vh;
+            max-height: 30vh;
+
+            margin-top: 8px;
+
+            font-size: 1.2em;
+
+            resize: vertical;
+        }
+
+        label{
+            display: block;
+
+            input[type=text], input[type=email]{
+                margin: 12px 0;
+                display: block;
+            }
+        }
+    }
+
+    p{
+        margin-bottom: 12px;
+
+        @media #{$smartphone-h}{
+            margin-bottom: 0;
+        }
+    }
+
+    p > label{
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+        font-size: 0.8em;
+        text-align: center;
+        
+        @media #{$smartphone}{
+            font-size: 1.2em;
+        }
+        
+        @media #{$smartphone-h}{
+            width: 49%;
+            display: inline-block;
+        }
+        
+        @media #{$pc}{
+            width: 48%;
+        }
+        
+        &:last-child{
+            margin-bottom: 24px;
+        }
+    }
+    
+    input[type=radio]{
+        width: 1px;
+        height: 1px;
+        visibility: hidden;
+
+        &+span{
+            @include rounded($dark-blue, $deep-blue);
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            padding: 12px;
+
+            border: 4px solid transparent;
+            background-color: $dark-blue;
+            box-shadow: 0 0 $deep-blue;
+            top: 2vh;
+            left : 1vh;
+
+            color: $light-blue;
+
+            $delay: 0.3s;
+            transition: color $delay, background-color $delay, box-shadow $delay, border $delay, top $delay, left $delay;
+
+            cursor: pointer;
+
+            @media #{$smartphone-v}{
+                width: 100%;
+            }
+
+            &:hover{
+                color: $text-main-color;
+                border: 4px solid $dark-blue;
+                background-color: $light-blue;
+            }
+        }
+        
+        &:checked + span{
+            @include rounded($secondary-color, $secondary-color-darken);
+            background-color: $secondary-color;
+            color: $text-main-color;
+            top: 0;
+            left: 0;
+            
+            cursor: auto;
+            
+            &:hover{
+                border-color: transparent;
+            }
+        }
+    }
+
+    #submitEmail{
+        @include rounded;
+
+        display: block;
+        margin: 18px auto;
+        padding: 12px 18px;
+
+        position: relative;
+
+        background-color: $secondary-color;
+        border: none;
+
+        text-transform: uppercase;
+        color: $text-main-color;
+        font-size: 1.2em;
+
+        transition: background-color 0.3s, color 0.3s;
+        cursor: pointer;
+
+        &:hover{
+            background-color: $text-main-color;
+            color: $secondary-color;
+        }
+
+        @media #{$smartphone}{
+            width: 100%;
+        }
+    }
+
+    input[type=text], input[type=email], textarea{
+        padding: 2vw;
+
+        border: none;
+        border-radius: 12px;
+    }
+}

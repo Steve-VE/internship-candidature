@@ -1,0 +1,19 @@
+@mixin rounded($bck-color: $text-main-color, $shd-color: $secondary-color-darken){
+    background-color: $bck-color;
+    border-radius: 1vh;
+    @include shaded($shd-color);
+}
+
+@mixin triangle-shape($size, $color){
+    width: 0;
+    height: 0;
+    
+    border-width: $size ($size * 0.6) 0 ($size * 0.6);
+    border-color: $color transparent transparent transparent;
+    border-style: solid;
+    background-color: transparent;
+}
+
+@mixin shaded($color: $secondary-color-darken, $distx: 1vh, $disty: 2vh){
+    box-shadow: $distx $disty $color;
+}

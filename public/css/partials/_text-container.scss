@@ -1,0 +1,21 @@
+.text-container{
+    width: 100%;
+    margin-bottom: 20vh;
+    padding: 20vh 20%;
+    
+    p{
+        margin: 1% 0;
+        @media screen and (max-width: 840px) and (orientation: portrait){
+            margin: 2% 0;
+        }
+    }
+
+    & strong, & .name{
+        font-weight: 400;
+        color: $strong-color;
+
+        & b, &.uppercase{
+            text-transform: uppercase;
+        }
+    }
+}

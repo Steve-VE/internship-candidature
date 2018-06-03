@@ -1,0 +1,8 @@
+.container.empty{
+    top: 260vh;
+    height: 120vh;
+
+    & > div:first-child{
+        @include rounded($text-main-color, $light-blue);
+    }
+}
