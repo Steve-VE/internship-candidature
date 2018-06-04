@@ -2,7 +2,6 @@
     @extend .container;
 
     top: 400vh;
-    // top: 0;
     font-size: 0.6em;
 
     background-color: $light-blue;
@@ -128,6 +127,23 @@
         }
     }
 
+    label{
+        &.left, &.right{
+
+            display: block;
+            width: 48%;
+            float: left;
+            
+            input{
+                width: 100%;
+            }
+            
+        }
+        &.right{
+            margin-left: 4%;
+        }
+    }
+
     #submitEmail{
         @include rounded;
 
@@ -162,5 +178,23 @@
 
         border: none;
         border-radius: 12px;
+    }
+
+    nav{
+        display: block;
+        width: fit-content;
+        margin: 0 auto;
+        margin-top: 24px;
+
+        a{
+            font-size: 2em;
+            color: $deep-blue;
+
+            transition: color 0.3s;
+
+            &:hover{
+                color: $text-main-color;
+            }
+        }
     }
 }
