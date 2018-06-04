@@ -32,7 +32,7 @@ window.onload = ()=>{
         event.preventDefault();
         sendMail();
         });
-    setInterval(update, 30);
+    setInterval(update, 10);
     run();
 };
 
@@ -89,8 +89,8 @@ const nextChapter = ()=>{
 // Fonctions utilitaires
 const update = ()=>{
     if(running){
-        haloContainer.update();
-        haloContainer.render();
+        // haloContainer.update();
+        // haloContainer.render();
         updateTextManager();
         updateScroll();
     }
@@ -255,15 +255,15 @@ const setParagraphs = ()=>{ // Définit le texte à afficher, et où l'afficher
         ])
     );
 
-    paragraphs[0].linkTo(".text-container");
-    paragraphs[1].linkTo(".text-container");
+    paragraphs[0].linkTo(".text-container>.content");
+    paragraphs[1].linkTo(".text-container>.content");
 
-    paragraphs[2].linkTo(".container.filled>div:first-child", true);
+    paragraphs[2].linkTo(".container.filled>.content>div:first-child", true);
     paragraphs[3].linkTo("#why-you>li:first-child");
     paragraphs[4].linkTo("#why-you>li:nth-child(2)");
     paragraphs[5].linkTo("#why-you>li:last-child");
 
-    paragraphs[6].linkTo(".container.empty>div:first-child", true);
+    paragraphs[6].linkTo(".container.empty>.content>div:first-child", true);
     paragraphs[7].linkTo("#why-me>li:first-child");
     paragraphs[8].linkTo("#why-me>li:nth-child(2)");
     paragraphs[9].linkTo("#why-me>li:last-child");

@@ -1,18 +1,18 @@
 .container.filled{
     top: 120vh;
     height: 120vh;
-
+    
     background-color: $secondary-color;
     background-image: url("../img/paper_texture.png");
-
+    
     border: 2vh solid darken($secondary-color, 10%);
     border-left: none;
     border-right: none;
     box-shadow: 1vh 2vh 1vh $color-shadow;
-
+    
     transform: skewY(-4deg);
     
-    &>*{
-        transform: skewY(4deg);
-    }
+    &>.content{ transform: skewY(4deg); }
+    
+    @media #{$smartphone-v}{ padding-top: 10vh; }
 }
