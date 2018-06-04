@@ -12,7 +12,7 @@ $strong-color: $secondary-color;
 $color-shadow: rgba(0, 0, 0, 0.6);
 
 $smartphone-width: 840px;
-$pc: screen and (min-width: $smartphone-width);
-$smartphone: screen and (max-width: $smartphone-width);
-$smartphone-h: screen and (max-width: $smartphone-width) and (orientation: landscape);
-$smartphone-v: screen and (max-width: $smartphone-width) and (orientation: portrait);
+$pc: "screen and (min-device-width:"+ $smartphone-width+")";
+$smartphone: "screen and (max-width:"+ $smartphone-width+")";
+$smartphone-h: "screen and (max-width: "+$smartphone-width+") and (orientation: landscape)";
+$smartphone-v: "screen and (max-width: "+$smartphone-width+") and (orientation: portrait)";

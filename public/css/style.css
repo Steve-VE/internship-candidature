@@ -4254,43 +4254,24 @@ body {
   font-size: 2.6em;
   background-color: black;
   background-attachment: fixed;
+  font-size: 32px;
 }
 
-@media (max-width: 840px) {
+@media screen and (max-width: 840px) and (orientation: portrait) {
   body {
-    font-size: 1em;
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 840px) and (orientation: landscape) {
+  body {
+    font-size: 24px;
   }
 }
 
 main {
   width: 100%;
   height: 100%;
-}
-
-.container, .form {
-  position: absolute;
-  width: 100%;
-  padding: 8% 20%;
-}
-
-@media (max-width: 840px) {
-  .container, .form {
-    padding: 8% 10%;
-  }
-}
-
-.container > div:first-child, .form > div:first-child {
-  background-color: white;
-  border-radius: 1vh;
-  box-shadow: 1vh 2vh #e42b21;
-  width: 100%;
-  padding: 4% 8%;
-  position: relative;
-  font-size: 0.9em;
-}
-
-.container .darken, .form .darken {
-  font-weight: normal;
 }
 
 .orange {
@@ -4303,7 +4284,6 @@ main {
 
 .orange ol .darken {
   color: #bf1e2d;
-  font-weight: bold;
 }
 
 .blue {
@@ -4325,19 +4305,63 @@ main {
   border-color: #4585c5;
 }
 
+.container, .form {
+  position: absolute;
+  width: 100%;
+  padding: 8% 0;
+}
+
+.container .content, .form .content {
+  width: 800px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 840px) {
+  .container .content, .form .content {
+    width: 80%;
+  }
+}
+
+.container .content > div:first-child, .form .content > div:first-child {
+  background-color: white;
+  border-radius: 1vh;
+  box-shadow: 1vh 2vh #e42b21;
+  width: 100%;
+  padding: 4% 8%;
+  position: relative;
+  font-size: 0.9em;
+}
+
+@media screen and (max-width: 840px) and (orientation: landscape) {
+  .container .content > div:first-child, .form .content > div:first-child {
+    font-size: 0.6em;
+  }
+}
+
 .text-container {
   width: 100%;
   margin-bottom: 20vh;
-  padding: 20vh 20%;
+  padding: 20vh 0;
 }
 
-.text-container p {
-  margin: 1% 0;
+.text-container .content {
+  width: 800px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 840px) {
+  .text-container .content {
+    width: 80%;
+  }
+}
+
+.text-container .content p {
+  margin: 1% auto;
 }
 
 @media screen and (max-width: 840px) and (orientation: portrait) {
-  .text-container p {
-    margin: 2% 0;
+  .text-container .content p {
+    margin: 2% auto;
   }
 }
 
@@ -4362,8 +4386,14 @@ main {
   transform: skewY(-4deg);
 }
 
-.container.filled > *, .filled.form > * {
+.container.filled > .content, .filled.form > .content {
   transform: skewY(4deg);
+}
+
+@media screen and (max-width: 840px) and (orientation: portrait) {
+  .container.filled, .filled.form {
+    padding-top: 10vh;
+  }
 }
 
 .container.empty, .empty.form {
@@ -4371,7 +4401,7 @@ main {
   height: 120vh;
 }
 
-.container.empty > div:first-child, .empty.form > div:first-child {
+.container.empty > .content > div:first-child, .empty.form > .content > div:first-child {
   background-color: white;
   border-radius: 1vh;
   box-shadow: 1vh 2vh #4585c5;
@@ -4379,8 +4409,21 @@ main {
 
 ol {
   width: 100%;
+  padding-top: 40px;
   list-style: none;
   counter-reset: point-counter;
+}
+
+@media screen and (max-width: 840px) and (orientation: portrait) {
+  ol {
+    padding-top: 12px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  ol {
+    padding-top: 0;
+  }
 }
 
 ol li {
@@ -4390,15 +4433,29 @@ ol li {
   position: relative;
   width: 0;
   height: 80px;
-  margin: 80px 0;
+  margin: 55px 0;
   padding: 0;
   color: #e42b21;
+  font-size: 0.44em;
 }
 
-@media (max-width: 840px) {
+@media screen and (max-width: 840px) {
   ol li {
-    margin-top: 12px;
-    margin-bottom: 12px;
+    margin: 24px 0;
+  }
+}
+
+@media screen and (max-width: 840px) and (orientation: portrait) {
+  ol li {
+    height: 100px;
+    font-size: 0.6em;
+  }
+}
+
+@media screen and (max-width: 840px) and (orientation: landscape) {
+  ol li {
+    margin: 12px 0;
+    height: 65px;
   }
 }
 
@@ -4421,23 +4478,17 @@ ol li::before {
   background-color: white;
 }
 
-@media (max-width: 840px) {
+@media screen and (max-width: 840px) {
   ol li::before {
     line-height: 45px;
   }
 }
 
-ol p {
-  font-size: 1em;
+ol li .darken {
+  font-weight: bold;
 }
 
-@media (max-width: 840px) {
-  ol p {
-    font-size: 2em;
-  }
-}
-
-@media (min-width: 840px) {
+@media screen and (min-device-width: 840px) {
   @keyframes reveal-circle {
     0% {
       border-width: 0;
@@ -4467,9 +4518,27 @@ ol p {
       border-width: 12px;
     }
   }
+  @keyframes reveal-paragraph {
+    0% {
+      font-size: 0;
+      width: 0;
+      display: none;
+      padding: 0;
+    }
+    50% {
+      display: block;
+      width: 0;
+      padding: 0;
+    }
+    100% {
+      width: 100%;
+      padding: 16px 32px;
+      padding-left: 80px;
+    }
+  }
 }
 
-@media (max-width: 840px) {
+@media screen and (max-width: 840px) {
   @keyframes reveal-circle {
     0% {
       border-width: 0;
@@ -4499,25 +4568,22 @@ ol p {
       border-width: 12px;
     }
   }
-}
-
-@keyframes reveal-paragraph {
-  0% {
-    font-size: 0;
-    width: 0;
-    display: none;
-    padding: 0;
-  }
-  50% {
-    display: block;
-    width: 0;
-    padding: 0;
-  }
-  100% {
-    width: 100%;
-    padding: 16px 32px;
-    padding-left: 100px;
-    font-size: 0.45em;
+  @keyframes reveal-paragraph {
+    0% {
+      font-size: 0;
+      width: 0;
+      display: none;
+      padding: 0;
+    }
+    50% {
+      display: block;
+      width: 0;
+      padding: 0;
+    }
+    100% {
+      width: 100%;
+      padding: 8px 16px 8px 50px;
+    }
   }
 }
 
@@ -4536,7 +4602,7 @@ ol p {
   transition: border 0.5s, background-color 0.5s;
 }
 
-@media (orientation: portrait) {
+@media screen and (max-width: 840px) and (orientation: portrait) {
   #start {
     width: 80vw;
     height: 80vw;
@@ -4564,7 +4630,7 @@ ol p {
   transition: opacity 0.5s;
 }
 
-@media (max-width: 840px) {
+@media screen and (max-width: 840px) {
   #start > .tip {
     display: none;
   }
@@ -4589,6 +4655,7 @@ ol p {
 
 .form {
   top: 400vh;
+  top: 0;
   font-size: 0.6em;
   background-color: #4585c5;
   background-image: url("../img/paper_texture.png");
@@ -4599,8 +4666,14 @@ ol p {
   transform: skewY(4deg);
 }
 
-.form > * {
+.form > .content {
   transform: skewY(-4deg);
+}
+
+@media screen and (max-width: 840px) and (orientation: portrait) {
+  .form {
+    padding-top: 10vh;
+  }
 }
 
 .form form textarea {
@@ -4614,47 +4687,41 @@ ol p {
   resize: vertical;
 }
 
-.form form label {
-  display: block;
-}
-
-.form form label input[type=text], .form form label input[type=email] {
-  margin: 12px 0;
-  display: block;
-}
-
 .form p {
   margin-bottom: 12px;
 }
 
-@media (orientation: landscape) {
+@media screen and (max-width: 840px) {
   .form p {
+    margin-bottom: 4px;
+  }
+  .form p:last-child {
     margin-bottom: 0;
   }
 }
 
 .form p > label {
-  display: block;
+  display: inline-block;
   width: 100%;
-  margin: 0 auto;
+  margin: 0 0;
   font-size: 0.8em;
   text-align: center;
 }
 
-@media (max-width: 840px) {
+@media screen and (max-width: 840px) {
   .form p > label {
     font-size: 1.2em;
   }
 }
 
-@media (orientation: landscape) {
+@media screen and (max-width: 840px) and (orientation: landscape) {
   .form p > label {
     width: 49%;
     display: inline-block;
   }
 }
 
-@media (min-width: 840px) {
+@media screen and (min-device-width: 840px) {
   .form p > label {
     width: 48%;
   }
@@ -4662,6 +4729,12 @@ ol p {
 
 .form p > label:last-child {
   margin-bottom: 24px;
+}
+
+@media screen and (max-width: 840px) and (orientation: landscape) {
+  .form p > label:last-child {
+    margin-bottom: 12px;
+  }
 }
 
 .form input[type=radio] {
@@ -4688,7 +4761,7 @@ ol p {
   cursor: pointer;
 }
 
-@media (orientation: portrait) {
+@media screen and (max-width: 840px) and (orientation: portrait) {
   .form input[type=radio] + span {
     width: 100%;
   }
@@ -4715,6 +4788,10 @@ ol p {
   border-color: transparent;
 }
 
+.form label {
+  display: block;
+}
+
 .form label.left, .form label.right {
   display: block;
   width: 48%;
@@ -4723,6 +4800,14 @@ ol p {
 
 .form label.left input, .form label.right input {
   width: 100%;
+  margin: 12px 0;
+  display: block;
+}
+
+@media screen and (max-width: 840px) {
+  .form label.left input, .form label.right input {
+    margin-top: 2px;
+  }
 }
 
 .form label.right {
@@ -4751,7 +4836,7 @@ ol p {
   color: #f7941e;
 }
 
-@media (max-width: 840px) {
+@media screen and (max-width: 840px) {
   .form #submitEmail {
     width: 100%;
   }
@@ -4771,9 +4856,17 @@ ol p {
 }
 
 .form nav a {
+  margin: 0 12px;
   font-size: 2em;
   color: #00132d;
   transition: color 0.3s;
+}
+
+@media screen and (max-width: 840px) and (orientation: portrait) {
+  .form nav a {
+    margin: 0 6px;
+    font-size: 3em;
+  }
 }
 
 .form nav a:hover {
