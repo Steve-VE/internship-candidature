@@ -1,9 +1,9 @@
 .form{
     @extend .container;
-
-    // height: 120vh;
+    
     top: 400vh;
-    top: 0;
+    padding: 100px 0;
+
     font-size: 0.6em;
 
     background-color: $light-blue;
@@ -20,20 +20,15 @@
 
     @media #{$smartphone-v}{ padding-top: 10vh; }
 
-    form{
-        textarea{
-            display: block;
-            width: 100%;
-            height: 200px;
-            min-height: 10vh;
-            max-height: 30vh;
+    textarea{
+        width: 100%;
+        height: 200px;
+        min-height: 10vh;
+        max-height: 50vh;
 
-            margin-top: 8px;
+        margin-top: 8px;
 
-            font-size: 1.2em;
-
-            resize: vertical;
-        }
+        resize: vertical;
     }
     
     p{
@@ -44,29 +39,28 @@
             
             &:last-child{ margin-bottom: 0; }
         }
-    }
-    
-    
-    p > label{
-        display: inline-block;
-        width: 100%;
-        margin: 0 0;
-        font-size: 0.8em;
-        text-align: center;
-        
-        @media #{$smartphone}{ font-size: 1.2em; }
-        
-        @media #{$smartphone-h}{
-            width: 49%;
-            display: inline-block;
-        }
-        
-        @media #{$pc}{ width: 48%; }
-        
-        &:last-child{
-            margin-bottom: 24px;
 
-            @media #{$smartphone-h}{ margin-bottom: 12px }
+        & > label{
+            display: inline-block;
+            width: 100%;
+            margin: 0 0;
+            font-size: 0.8em;
+            text-align: center;
+            
+            @media #{$smartphone}{ font-size: 1.2em; }
+            
+            @media #{$smartphone-h}{
+                width: 49%;
+                display: inline-block;
+            }
+            
+            @media #{$pc}{ width: 48%; }
+            
+            &:last-child{
+                margin-bottom: 24px;
+    
+                @media #{$smartphone-h}{ margin-bottom: 12px }
+            }
         }
     }
     
@@ -125,7 +119,6 @@
         display: block;
 
         &.left, &.right{
-            display: block;
             width: 48%;
             float: left;
             
@@ -152,16 +145,13 @@
         margin: 18px auto;
         padding: 12px 18px;
 
-        position: relative;
-
         background-color: $secondary-color;
         border: none;
 
         text-transform: uppercase;
         color: $text-main-color;
         font-size: 1.2em;
-
-        transition: background-color 0.3s, color 0.3s;
+        
         cursor: pointer;
 
         &:hover{
@@ -175,17 +165,19 @@
     }
 
     input[type=text], input[type=email], textarea{
-        padding: 2vw;
+        padding: 12px;
 
         border: none;
         border-radius: 12px;
+        font-size: 1.2em;
+        font-family: $main-font;
     }
 
     nav{
         display: block;
         width: fit-content;
         margin: 0 auto;
-        margin-top: 24px;
+        margin-top: 32px;
 
         a{
             margin: 0 12px;
