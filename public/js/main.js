@@ -4,6 +4,7 @@
     let running = false; // Indique à notre programme s'il tourne
     let paragraphs = [];
     let activeParagraph = -1;
+    let frameRate = (1000 / 30);
     
     // HTML elements
     let body;
@@ -13,8 +14,10 @@
     let firstList;
     let submitButton;
     // Variables pour le scrolling (automatique ou utilisateur via la roulette de la souris)
-    let currentScroll = 0, maxScroll = 0;
-    let scrollTarget = 0;
+    let currentScroll = 0; // Position actuelle du scroll
+    let maxScroll = 0; // Position au-delà de laquelle le scroll ne peut aller
+    let scrollTarget = 0; // Position que le scroll doit atteindre
+    let lastScreenY; // Dernière position en y de l'écran, utile pour calculer le coulissement sur smartphone
 
     let fadeInterval;
     let gotoNext;
@@ -32,10 +35,10 @@ window.onload = ()=>{
         event.preventDefault();
         sendMail();
         });
-    setInterval(update, 10);
+    setInterval(update, frameRate);
     run();
 };
-
+// Utilisation PC
 window.addEventListener('wheel', (e)=>{
     const delta = (e.deltaY) / 2;
     
@@ -65,6 +68,25 @@ window.addEventListener('keydown', (e)=>{
         nextChapter();
     }
 });
+// Utilisation smartphone
+window.addEventListener('touchmove', (e)=>{
+    const screenY = e.touches[0].screenY;
+    if(lastScreenY === undefined){
+        lastScreenY = screenY;
+    }
+    const delta = (lastScreenY - screenY);
+    
+    console.log(delta);
+    if(body !== undefined){  
+        currentScroll = constrain( (currentScroll + delta), 0, maxScroll);
+        scrollTarget = currentScroll;
+        updateScroll();
+    }
+    lastScreenY = screenY;
+});
+window.addEventListener('touchend', (e)=>{
+    lastScreenY = undefined;
+});
 
 const nextChapter = ()=>{
     if(gotoNext !== undefined){
@@ -89,8 +111,8 @@ const nextChapter = ()=>{
 // Fonctions utilitaires
 const update = ()=>{
     if(running){
-        // haloContainer.update();
-        // haloContainer.render();
+        haloContainer.update();
+        haloContainer.render();
         updateTextManager();
         updateScroll();
     }
@@ -279,10 +301,10 @@ const nextItem = ()=>{ // Passe à l'item suivant dans une liste
     }
 };
 
-const defineScrollTarget = (newValue)=>{
-    scrollTarget = newValue;
-    if(maxScroll < scrollTarget){
-        maxScroll = scrollTarget;
+const defineScrollTarget = (newScrollTarget, newMaxScroll = newScrollTarget)=>{
+    scrollTarget = newScrollTarget;
+    if(maxScroll < newMaxScroll){
+        maxScroll = newMaxScroll;
     }
 };
 const updateScroll = ()=>{ // Gère le scrolling de la page (qui passe par un déplacement du body plutôt que par un véritable scroll en fait)
@@ -342,24 +364,3 @@ const sendMail = ()=>{
         };
     }
 };
-
-
-let lastScreenY;
-window.addEventListener('touchmove', (e)=>{
-    const screenY = e.touches[0].screenY;
-    if(lastScreenY === undefined){
-        lastScreenY = screenY;
-    }
-    const delta = (lastScreenY - screenY);
-    
-    console.log(delta);
-    if(body !== undefined){  
-        currentScroll = constrain( (currentScroll + delta), 0, maxScroll);
-        scrollTarget = currentScroll;
-        updateScroll();
-    }
-    lastScreenY = screenY;
-});
-window.addEventListener('touchend', (e)=>{
-    lastScreenY = undefined;
-});
