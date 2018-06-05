@@ -1,34 +1,35 @@
-//* Variables : 
-    const pauseBetweenParagraph = 800; // Pause entre l'affichage de deux paragraphes (en millisecondes)
-    let currentNavigator;
+// Variables
+    // Navigateurs 
+        const currentNavigator = defineNavigator();
+        const deviceWidth = window.innerWidth;
+        const deviceHeight = window.innerHeight;
+    // Paramètres 
+        const animationTime = 2; // Temps d'apparition pour les éléments des listes (en secondes)
+        const frameRate = (1000 / 30); // Frames par seconde
+        const pauseBetweenParagraph = 800; // Pause entre l'affichage de deux paragraphes (en millisecondes)
 
-    let running = false; // Indique à notre programme s'il tourne
-    let paragraphs = [];
-    let activeParagraph = -1;
-    let frameRate = (1000 / 30);
-    // frameRate = 1;
-    
     // HTML elements
-    let body;
-    let startingBubble;
-    let next;
-    let haloContainer;
-    let firstList;
-    let submitButton;
+        let body;
+        let startingBubble;
+        let next;
+        let haloContainer;
+        let firstList;
+        let submitButton;
     // Variables pour le scrolling (automatique ou utilisateur via la roulette de la souris)
-    let currentScroll = 0; // Position actuelle du scroll
-    let maxScroll = 0; // Position au-delà de laquelle le scroll ne peut aller
-    let scrollTarget = 0; // Position que le scroll doit atteindre
-    let lastScreenY; // Dernière position en y de l'écran, utile pour calculer le coulissement sur smartphone
-
-    let fadeInterval;
-    let gotoNext;
-    let progress = 0;
-    let chapter = 0;
-//*/
+        let currentScroll = 0; // Position actuelle du scroll
+        let maxScroll = 0; // Position au-delà de laquelle le scroll ne peut aller
+        let scrollTarget = 0; // Position que le scroll doit atteindre
+        let lastScreenY; // Dernière position en y de l'écran, utile pour calculer le coulissement sur smartphone
+    // Autres
+        let running = false; // Indique à notre programme s'il tourne
+        let paragraphs = [];
+        let activeParagraph = -1;
+        let fadeInterval;
+        let gotoNext;
+        let progress = 0;
+        let chapter = 0;
 
 window.onload = ()=>{
-    currentNavigator = defineNavigator();
     body = document.querySelector("body");
     startingBubble = document.getElementById("start");
     haloContainer = new HaloContainer(body);
@@ -85,7 +86,6 @@ window.addEventListener('touchmove', (e)=>{
     }
     const delta = (lastScreenY - screenY);
     
-    console.log(delta);
     if(body !== undefined){  
         currentScroll = constrain( (currentScroll + delta), 0, maxScroll);
         scrollTarget = currentScroll;
@@ -222,7 +222,12 @@ const nextChapter = ()=>{
         activeParagraph++;
     }
     else if(chapter == 3 && activeParagraph == 9 && paragraphs[activeParagraph].isFinish){
-        defineScrollTarget(window.innerHeight * 3.9);
+        const form = document.querySelector(".form");
+        const formRect = form.getBoundingClientRect();
+        const nav = document.querySelector("nav");
+        const navRect = nav.getBoundingClientRect();
+        console.log(form.offsetTop + navRect.y + navRect.height);
+        defineScrollTarget(form.offsetTop, maxScroll + formRect.bottom - deviceHeight);
         chapter++;
     }
 };
@@ -268,9 +273,9 @@ const updateTextManager = ()=>{
         }
         else if( (chapter == 2 && activeParagraph < 5) || (chapter == 3 && activeParagraph < 9) ){
             let currentItem = paragraphs[activeParagraph +1].html.parentElement;
-            if(currentItem.style.animation !== "reveal-paragraph 2s linear forwards"){
-                currentItem.style.animation = "reveal-paragraph 2s linear forwards";
-                currentItem.pseudoStyle(":before", "animation", "reveal-circle 2s linear forwards");
+            if(currentItem.style.animation !== "reveal-paragraph "+ animationTime +"s linear forwards"){
+                currentItem.style.animation = "reveal-paragraph "+ animationTime +"s linear forwards";
+                currentItem.pseudoStyle(":before", "animation", "reveal-circle "+ animationTime +"s linear forwards");
                 
                 currentItem.addEventListener('animationend', (e)=>{
                     if(e.animationName === "reveal-paragraph"){
@@ -305,9 +310,12 @@ const deleteFadeInterval = ()=>{
 };
 
 const defineScrollTarget = (newScrollTarget, newMaxScroll = newScrollTarget)=>{
+    console.log("-p. New scrollTarget: " + newScrollTarget);
+    console.log("-p. New maxScroll: " + newMaxScroll);
     scrollTarget = newScrollTarget;
     if(maxScroll < newMaxScroll){
         maxScroll = newMaxScroll;
+        console.log("New maxScroll: " + maxScroll);
     }
 };
 const updateScroll = ()=>{ // Gère le scrolling de la page (qui passe par un déplacement du body plutôt que par un véritable scroll en fait)

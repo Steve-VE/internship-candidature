@@ -71,6 +71,7 @@ class TextContainer{ // Class qui contient un morceau d'une ligne de texte
     constructor(p_content, p_class = null){
         this.text = p_content; // Texte à afficher
         this.visibleText = ""; 
+        this.tagBuffer = "";
         this.class = p_class; // Class CSS à ajouter au texte
 
         this.parent = null;
@@ -97,7 +98,20 @@ class TextContainer{ // Class qui contient un morceau d'une ligne de texte
         }
         else{
             if(this.progress < this.text.length){
-                this.visibleText += this.text[this.progress];
+                if(this.text[this.progress] == '<'){
+                    this.tagBuffer += this.text[this.progress];
+                }
+                else if(this.text[this.progress] == '>'){
+                    this.tagBuffer += this.text[this.progress];
+                    this.visibleText += this.tagBuffer;
+                    this.tagBuffer = "";
+                }
+                else if(this.tagBuffer !== ""){
+                    this.tagBuffer += this.text[this.progress];
+                }
+                else{
+                    this.visibleText += this.text[this.progress];
+                }
                 this.progress++;
             }
             else if(!this.finished){
