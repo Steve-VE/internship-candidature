@@ -4242,6 +4242,9 @@ readers do not read off random characters that represent icons */
   padding: 0;
   box-sizing: border-box;
   user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 body {
@@ -4846,8 +4849,10 @@ ol li .darken {
 }
 
 .form nav {
+  width: intrinsic;
+  width: -moz-max-content;
+  width: -webkit-max-content;
   display: block;
-  width: fit-content;
   margin: 0 auto;
   margin-top: 32px;
 }

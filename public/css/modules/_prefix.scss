@@ -1,0 +1,12 @@
+@mixin no-select(){
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+@mixin max-content(){
+    width: intrinsic;
+    width: -moz-max-content;
+    width: -webkit-max-content;
+}
