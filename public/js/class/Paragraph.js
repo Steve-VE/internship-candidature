@@ -11,7 +11,7 @@ class Paragraph{ // Class qui contient un paragraphe
         }
     }
 
-    linkTo(selector, clear = false) {
+    linkTo(selector, clear = true) {
         this.html = document.createElement("p");
         this.parent = document.querySelector(selector);
         if(clear){ // Permet de récupérer et de supprimer le paragrpahe si l'élément en contient déjà un
