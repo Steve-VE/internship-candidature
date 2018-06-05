@@ -4242,6 +4242,9 @@ readers do not read off random characters that represent icons */
   padding: 0;
   box-sizing: border-box;
   user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 body {
@@ -4334,6 +4337,8 @@ main {
 
 @media screen and (max-width: 840px) and (orientation: landscape) {
   .container .content > div:first-child, .form .content > div:first-child {
+    padding: 4px;
+    padding-left: 16px;
     font-size: 0.6em;
   }
 }
@@ -4430,24 +4435,24 @@ ol li {
   background-color: white;
   border-radius: 1vh;
   box-shadow: 1vh 2vh #e42b21;
+  opacity: 0;
   position: relative;
-  width: 0;
-  height: 80px;
   margin: 55px 0;
-  padding: 0;
+  padding: 16px 32px;
+  padding-left: 80px;
   color: #e42b21;
   font-size: 0.44em;
 }
 
 @media screen and (max-width: 840px) {
   ol li {
-    margin: 24px 0;
+    margin: 12px 0;
+    padding: 8px 16px 8px 50px;
   }
 }
 
 @media screen and (max-width: 840px) and (orientation: portrait) {
   ol li {
-    height: 100px;
     font-size: 0.6em;
   }
 }
@@ -4455,7 +4460,6 @@ ol li {
 @media screen and (max-width: 840px) and (orientation: landscape) {
   ol li {
     margin: 12px 0;
-    height: 65px;
   }
 }
 
@@ -4520,6 +4524,7 @@ ol li .darken {
   }
   @keyframes reveal-paragraph {
     0% {
+      opacity: 1;
       font-size: 0;
       width: 0;
       display: none;
@@ -4531,6 +4536,7 @@ ol li .darken {
       padding: 0;
     }
     100% {
+      opacity: 1;
       width: 100%;
       padding: 16px 32px;
       padding-left: 80px;
@@ -4570,6 +4576,7 @@ ol li .darken {
   }
   @keyframes reveal-paragraph {
     0% {
+      opacity: 1;
       font-size: 0;
       width: 0;
       display: none;
@@ -4581,6 +4588,7 @@ ol li .darken {
       padding: 0;
     }
     100% {
+      opacity: 1;
       width: 100%;
       padding: 8px 16px 8px 50px;
     }
@@ -4795,13 +4803,19 @@ ol li .darken {
   float: left;
 }
 
+@media screen and (max-width: 840px) and (orientation: portrait) {
+  .form label.left, .form label.right {
+    width: 100%;
+  }
+}
+
 .form label.left input, .form label.right input {
   width: 100%;
   margin: 12px 0;
   display: block;
 }
 
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 840px) and (orientation: landscape) {
   .form label.left input, .form label.right input {
     margin-top: 2px;
   }
@@ -4809,6 +4823,12 @@ ol li .darken {
 
 .form label.right {
   margin-left: 4%;
+}
+
+@media screen and (max-width: 840px) and (orientation: portrait) {
+  .form label.right {
+    margin-left: 0;
+  }
 }
 
 .form #submitEmail {
@@ -4846,8 +4866,10 @@ ol li .darken {
 }
 
 .form nav {
+  width: intrinsic;
+  width: -moz-max-content;
+  width: -webkit-max-content;
   display: block;
-  width: fit-content;
   margin: 0 auto;
   margin-top: 32px;
 }

@@ -19,7 +19,11 @@
             
             font-size: 0.9em;
             
-            @media #{$smartphone-h}{ font-size: 0.6em; }
+            @media #{$smartphone-h}{ 
+                padding: 4px;
+                padding-left: 16px;
+                font-size: 0.6em; 
+            }
         }
     }
 }
