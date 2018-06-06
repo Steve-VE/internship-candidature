@@ -14,6 +14,20 @@ const random = (min, max, integer = false) => { // Retourne une valeur aléatoir
     }
     return value;
 };
+const defineNavigator = () => { // Retourne le navigateur utilisé sous forme de caractère (Edge, Chrome ou Firefox)
+    const navigatorsName = [
+        "Edge",
+        "Chrome",
+        "Firefox"
+    ];
+    const userAgent = navigator.userAgent;
+    for(let navigatorName of navigatorsName){
+        if(userAgent.indexOf(navigatorName) > 1){
+            return navigatorName;
+        }
+    }
+    return undefined;
+};
 
 // Vendors
 (function () {

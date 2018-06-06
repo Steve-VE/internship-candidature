@@ -2,55 +2,27 @@
     position: absolute;
 
     width: 100%;
-    padding: 8% 20%;
+    padding: 8% 0;
 
-    @media #{$smartphone}{
-        padding: 8% 10%;
-    }
+    .content{
+        width: 800px;
+        margin: 0 auto;
 
-    & > div:first-child{
-        @include rounded;
-
-        width: 100%;
-        padding: 4% 8%;
-        position: relative;
-
-        font-size: 0.9em;
-    }
-
-    .darken{
-        font-weight: normal;
-    }
-}
-
-.orange{
-    color: $secondary-color;
-
-    .darken{
-        color: $secondary-color-darken;
-    }
-    ol{
-        .darken{
-            color: $brown;
-            font-weight: bold;
-        }
-    }
-}
-
-.blue{
-    color: $light-blue;
-
-    .darken{
-        color: $dark-blue;
-    }
-
-    ol{
-        li{
-            @include rounded($text-main-color, $light-blue);
-            color: $light-blue;
-
-            &::before{
-                border-color: $light-blue;
+        @media #{$smartphone}{ width: 80%; }
+        
+        & > div:first-child{
+            @include rounded;
+            
+            width: 100%;
+            padding: 4% 8%;
+            position: relative;
+            
+            font-size: 0.9em;
+            
+            @media #{$smartphone-h}{ 
+                padding: 4px;
+                padding-left: 16px;
+                font-size: 0.6em; 
             }
         }
     }

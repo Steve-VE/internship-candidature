@@ -7,76 +7,96 @@
     <title>Ma candidature :)</title>
 
     <link rel="stylesheet" href="/assets/css/style.css">
-    <script src="/assets/js/class/HaloContainer.js"></script>
-    <script src="/assets/js/class/Paragraph.js"></script>
-    <script src="/assets/js/functions.js"></script>
-    <script src="/assets/js/main.js"></script>
 </head>
 <body>
     <main class="halo-container">
         <div id="start" onclick="showMustGoOn()">
             <div class="tip">Hey ! Cliquez-moi !!!</div>
         </div>
+        
         <section class="text-container">
+            <div class="content"></div>
         </section>
-
+        
         <section class="container filled orange">
-            <div><p>
-                Je vous contacte car je suis à la recherche d'un stage, et j'aimerai énormément réaliser mon stage chez vous, et ce pour les raisons suivantes...
-            </p></div>
-            <div>
-                <ol id="why-you">
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ol>
+            <div class="content">
+                <div><p>
+                    Je vous contacte car je suis à la recherche d'un stage, et j'aimerai énormément réaliser mon stage chez vous, et ce pour les raisons suivantes...
+                </p></div>
+                <div>
+                    <ol id="why-you">
+                        <li><p>J'apprécie beaucoup ce que vous faites et je trouve que l'influence d'Ankama pousse la création française dans la bonne direction, encourgeant de nombreux créatifs.</p></li>
+                        <li><p>Mon souhait a toujours été de travailler dans la conception de jeu vidéo.<br>Même si pour l'instant j'en suis encore loin, mon objectif est toujours le même!</p></li>
+                        <li><p>J'ai vu que vous aviez dans vos cartons un projet de launcher en Node.js.<br>C'est la techno que j'apprends en ce moment et sur laquelle je compte me spécialiser.</p></li>
+                    </ol>
+                </div>
             </div>
         </section>
 
         <section class="container empty blue">
-            <div><p>
-                En tant que stagiaire, quelles sont mes qualités ?
-            </p></div>
-            <div>
-                <ol id="why-me">
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ol>
+            <div class="content">
+                <div><p>
+                    En tant que stagiaire, quelles sont mes qualités ?
+                </p></div>
+                <div>
+                    <ol id="why-me">
+                        <li><p>Bien que je travaille volontier en équipe, je suis quelqu'un d'autonome</p></li>
+                        <li><p>Je suis curieux et toujours partant pour en apprendre d'avantage!</p></li>
+                        <li><p>J'attache une grande importance à réaliser un code propre, lisible et maintenable.</p></li>
+                    </ol>
+                </div>
             </div>
         </section>
 
         <section class="form">
-            <form>
-                <p>
-                    Pour plus de simplicité, vous pouvez répondre à ma candidature directement via ce formulaire.
-                </p>
-                <p>
-                    Votre réponse à ma candidature est ?
-                </p>
-                <p>
-                    <label>
-                        <input type="radio" value="positive" name="email_agrement" checked>
-                        <span>Positive, bienvenue mousaillon !</span>
+            <div class="content">
+                <form>
+                    <p>
+                        Pour plus de simplicité, vous pouvez répondre à ma candidature directement via ce formulaire.
+                    </p>
+                    <p>
+                        Votre réponse à ma candidature est ?
+                    </p>
+                    <p>
+                        <label>
+                            <input type="radio" value="positive" name="email_agrement" checked>
+                            <span>Positive, bienvenue mousaillon !</span>
+                        </label>
+                        <label>
+                            <input type="radio" value="negative" name="email_agrement">
+                            <span>Négative, une autre fois peut être.</span> 
+                        </label>
+                    </p>
+                    <label class="left">Votre nom
+                        <input type="text" name="email_name">
+                    </label>
+                    <label class="right">Votre adresse email 
+                        <input type="email" name="email_adress">
                     </label>
                     <label>
-                        <input type="radio" value="negative" name="email_agrement">
-                        <span>Négative, une autre fois peut être.</span> 
+                        Un message à me transmettre ?
+                        <textarea name="email_message"></textarea>
                     </label>
-                </p>
-                <label>Votre nom
-                    <input type="text" name="email_name">
-                </label>
-                <label>Votre adresse email
-                    <input type="email" name="email_adress">
-                </label>
-                <label>
-                    Un message particulier à me transmettre ?
-                    <textarea name="email_message"></textarea>
-                </label>
-                <input id="submitEmail" type="button" value="Envoyer">
-            </form>
+                    <input id="submitEmail" type="button" value="Envoyer">
+                </form>
+                <nav>
+                    <a href="https://github.com/Steve-VE"><i class="fab fa-github"></i></a>
+                    <a href="https://codepen.io/SteveVE/"><i class="fab fa-codepen"></i></a>
+                    <a href="https://www.linkedin.com/in/steve-van-essche/"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.facebook.com/zombixel/"><i class="fab fa-facebook"></i></a>
+                </nav>
+            </div>
         </section>
+
+        <aside id="email-notifier">
+            <p>
+                Votre réponse a correctement été envoyée, merci beaucoup!
+            </p>
+        </aside>
     </main>
+    <script src="/assets/js/class/HaloContainer.js"></script>
+    <script src="/assets/js/class/Paragraph.js"></script>
+    <script src="/assets/js/functions.js"></script>
+    <script src="/assets/js/main.js"></script>
 </body>
 </html>
