@@ -4891,4 +4891,53 @@ ol li .darken {
 .form nav a:hover {
   color: white;
 }
+
+#email-notifier {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 100vh;
+  padding-top: 20%;
+  text-align: center;
+  color: white;
+  text-shadow: 0 0 2px #00132d;
+  background-color: #302e84;
+  background-image: linear-gradient(0deg, rgba(0, 19, 45, 0.66) 0%, transparent 66%), url("/assets/img/gone.png");
+  background-size: cover;
+  background-repeat: repeat;
+  background-position: 100% 20%;
+}
+
+@media screen and (max-width: 840px) and (orientation: portrait) {
+  #email-notifier {
+    background-position: 20% 0;
+  }
+}
+
+@media screen and (max-width: 840px) and (orientation: landscape) {
+  #email-notifier {
+    background-position: -20% 50%;
+  }
+}
+
+#email-notifier p {
+  min-width: 200px;
+  max-width: 80vw;
+  margin: 0 auto;
+  font-size: 2em;
+}
+
+@media screen and (max-width: 840px) and (orientation: landscape) {
+  #email-notifier p {
+    font-size: 1em;
+    max-width: 60vw;
+  }
+}
+
+@media screen and (max-width: 840px) and (orientation: portrait) {
+  #email-notifier p {
+    font-size: 1em;
+    max-width: 50vw;
+  }
+}
 /*# sourceMappingURL=style.css.map */
