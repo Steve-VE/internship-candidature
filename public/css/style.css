@@ -4891,4 +4891,36 @@ ol li .darken {
 .form nav a:hover {
   color: white;
 }
+
+#email-notifier {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 100vh;
+  padding-top: 20%;
+  text-align: center;
+  color: white;
+  background-color: #f7941e;
+}
+
+#email-notifier p {
+  min-width: 200px;
+  max-width: 80vw;
+  margin: 0 auto;
+  font-size: 2em;
+}
+
+@media screen and (max-width: 840px) and (orientation: landscape) {
+  #email-notifier p {
+    font-size: 1em;
+    max-width: 60vw;
+  }
+}
+
+@media screen and (max-width: 840px) and (orientation: portrait) {
+  #email-notifier p {
+    font-size: 1em;
+    max-width: 50vw;
+  }
+}
 /*# sourceMappingURL=style.css.map */

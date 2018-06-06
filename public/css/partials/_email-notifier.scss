@@ -1,0 +1,32 @@
+#email-notifier{
+    width: 100vw;
+    height: 100vh;
+    
+    position: fixed;
+    top: 100vh;
+    // top: 0;
+
+    padding-top: 20%;
+
+    text-align: center;
+    color: $text-main-color;
+    
+    background-color: $secondary-color;
+    
+    p{
+        min-width: 200px;
+        max-width: 80vw;
+        margin: 0 auto;
+        
+        font-size: 2em;
+
+        @media #{$smartphone-h}{ 
+            font-size: 1em; 
+            max-width: 60vw;
+        }
+        @media #{$smartphone-v}{ 
+            font-size: 1em; 
+            max-width: 50vw;
+        }
+    }
+}

@@ -25,6 +25,7 @@
         let paragraphs = [];
         let activeParagraph = -1;
         let fadeInterval;
+        let emailModalInterval;
         let gotoNext;
         let progress = 0;
         let chapter = 0;
@@ -34,11 +35,7 @@ window.onload = ()=>{
     startingBubble = document.getElementById("start");
     haloContainer = new HaloContainer(body);
     submitButton = document.getElementById("submitEmail");
-    submitButton.addEventListener('click', (event)=>{
-        console.log(event);
-        event.preventDefault();
-        sendMail();
-        });
+    submitButton.addEventListener('click',  sendMail);
     setInterval(update, frameRate);
     run();
 };
@@ -58,8 +55,16 @@ window.addEventListener('wheel', (e)=>{
         updateScroll();
     }
 });
-window.addEventListener('click', ()=>{ 
+window.addEventListener('click', (e)=>{ 
     nextChapter();
+
+    if(emailModalInterval !== undefined){
+        const modal = document.getElementById("email-notifier");
+        if(modal.style.top == "0vh"){
+            clearInterval(emailModalInterval);
+            emailModalInterval = setInterval(hindEmailModal, frameRate);
+        }
+    }
 });
 window.addEventListener('keydown', (e)=>{
     const keyCode = e.keyCode;
@@ -243,8 +248,8 @@ const nextItem = ()=>{ // Passe à l'item suivant dans une liste
 
 const update = ()=>{
     if(running){
-        haloContainer.update();
-        haloContainer.render();
+        // haloContainer.update();
+        // haloContainer.render();
         updateTextManager();
         updateScroll();
     }
@@ -330,7 +335,9 @@ const updateScroll = ()=>{ // Gère le scrolling de la page (qui passe par un d�
 };
 const notScrolling = ()=> (currentScroll == scrollTarget);
 
-const sendMail = ()=>{
+const sendMail = (event)=>{
+    console.log(event.target);
+    event.preventDefault();
     let emailData = {};
     let elements = [
         document.getElementsByName("email_name")[0],
@@ -341,10 +348,11 @@ const sendMail = ()=>{
     const propertiesName = ["name", "adress", "agrement", "message"];
     let valid = true;
     let data = "";
-
+    
     for(let i = 0; i < propertiesName.length; i++){
         if(elements[i] !== undefined && elements[i] !== null){
-            if(elements[i].value == ""){
+            console.log(elements[i].value);
+            if(elements[i].value == "" && propertiesName[i] !== "message"){
                 valid = false;
                 break;
             }
@@ -357,8 +365,9 @@ const sendMail = ()=>{
             }
         }
     }
-
+    
     if(valid){
+        event.target.removeEventListener('click', sendMail);
         let httpRequest = new XMLHttpRequest();
         httpRequest.open('GET', '/sendmail?' + data, true);
         httpRequest.send();
@@ -366,12 +375,59 @@ const sendMail = ()=>{
         httpRequest.onreadystatechange = (event)=>{
             if(httpRequest.readyState == 4){
                 if(httpRequest.status == 200){
-                    console.log(event);
+                    revealEmailModal();
                 }
                 else{
                     console.log("Ohoh... We have a problem :(");
+                    event.target.addEventListener('click', sendMail);
                 }
             }
         };
+    }
+};
+
+
+const revealEmailModal = () => {
+    const modal = document.getElementById("email-notifier");
+    emailModalInterval = setInterval(function(){
+        if(modal.style.top == ""){
+            modal.style.top = "100vh";
+        }
+        else if(modal.style.top !== "0vh"){
+            let value = modal.style.top;
+            value = value.slice(0, modal.style.top.length - 2);
+            value = parseFloat(value) * 0.8;
+            
+            if(value < 0.1){
+                value = 0;
+                scrollTarget = 0;
+                currentScroll = 0;
+                modal.style.cursor = "pointer";
+            }
+
+            modal.style.top = value + "vh";
+        }
+    }, frameRate );
+};
+const hindEmailModal = () => {
+    const modal = document.getElementById("email-notifier");
+    if(modal.style.top == "" || modal.style.top == "0vh"){
+        modal.style.top = "1vh";
+        modal.style.cursor = "default";
+    }
+    else if(modal.style.top !== "100vh"){
+        let value = modal.style.top;
+        value = value.slice(0, modal.style.top.length - 2);
+        value = parseFloat(value) * 1.2;
+        
+        if(value > 99.9){
+            value = 100;
+        }
+
+        modal.style.top = value + "vh";
+    }
+    else{
+        clearInterval(emailModalInterval);
+        submitButton.addEventListener('click',  sendMail);
     }
 };
