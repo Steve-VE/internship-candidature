@@ -5,7 +5,7 @@
         const deviceHeight = window.innerHeight;
     // Paramètres 
         const animationTime = 2; // Temps d'apparition pour les éléments des listes (en secondes)
-        const frameRate = (1000 / 30); // Frames par seconde
+        const frameRate = (1000 / 60); // Frames par seconde
         const pauseBetweenParagraph = 800; // Pause entre l'affichage de deux paragraphes (en millisecondes)
 
     // HTML elements
@@ -248,8 +248,8 @@ const nextItem = ()=>{ // Passe à l'item suivant dans une liste
 
 const update = ()=>{
     if(running){
-        // haloContainer.update();
-        // haloContainer.render();
+        haloContainer.update();
+        haloContainer.render();
         updateTextManager();
         updateScroll();
     }
